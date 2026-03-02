@@ -8,11 +8,11 @@ echo "listen_addresses = '*'" >> "$PGDATA/postgresql.conf"
 
 # OLTP
 echo "max_connections = 1200" >> "$PGDATA/postgresql.conf"
-echo "shared_buffers = 4GB" >> "$PGDATA/postgresql.conf"
+echo "shared_buffers = 2GB" >> "$PGDATA/postgresql.conf"
 echo "temp_buffers = 1MB" >> "$PGDATA/postgresql.conf"
 echo "work_mem = 1MB" >> "$PGDATA/postgresql.conf"
 echo "checkpoint_timeout = 15min" >> "$PGDATA/postgresql.conf"
-echo "effective_cache_size = 12GB" >> "$PGDATA/postgresql.conf"
+echo "effective_cache_size = 6GB" >> "$PGDATA/postgresql.conf"
 echo "fsync = on" >> "$PGDATA/postgresql.conf"
 echo "commit_delay = 2000" >> "$PGDATA/postgresql.conf"
 
