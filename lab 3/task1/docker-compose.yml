@@ -9,13 +9,14 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
     volumes:
-      - pg_a_data:/var/lib/postgresql/data
       - ./primary/init:/docker-entrypoint-initdb.d:ro
       - ./primary/conf:/etc/postgresql/custom:ro
+    tmpfs:
+      - /var/lib/postgresql/data:size=1g
     ports:
       - "9437:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -p 5432 -q"]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -46,7 +47,7 @@ services:
     ports:
       - "9438:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -p 5432 -q"]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -77,7 +78,7 @@ services:
     ports:
       - "9439:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -p 5432 -q"]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -99,7 +100,7 @@ services:
     ports:
       - "9440:9999"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -p 9999 -U postgres -d postgres"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -p 9999 -q"]
       interval: 5s
       timeout: 5s
       retries: 20
