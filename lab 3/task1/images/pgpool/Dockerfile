@@ -16,4 +16,4 @@ RUN chmod 600 /etc/pgpool2/pcp.conf \
     && chown -R postgres:postgres /var/run/postgresql /var/log/pgpool /etc/pgpool2
 ENV PATH="/usr/sbin:/usr/bin:/bin:${PATH}"
 USER postgres
-CMD ["bash", "-lc", "wait-for-services.sh pg_a 5432 pg_b 5432 pg_c 5432 && exec /usr/sbin/pgpool -n -f /etc/pgpool2/pgpool.conf -a /etc/pgpool2/pool_hba.conf"]
+CMD ["bash", "-lc", "wait-for-services.sh pg_a 5432 pg_b 5432 pg_c 5432 && exec /usr/sbin/pgpool -D -n -f /etc/pgpool2/pgpool.conf -a /etc/pgpool2/pool_hba.conf"]
