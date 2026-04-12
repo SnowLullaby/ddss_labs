@@ -8,8 +8,10 @@ COPY pgpool/pool_hba.conf /etc/pgpool2/pool_hba.conf
 COPY pgpool/pool_passwd /etc/pgpool2/pool_passwd
 COPY pgpool/pcp.conf /etc/pgpool2/pcp.conf
 COPY scripts/wait-for-services.sh /usr/local/bin/wait-for-services.sh
+COPY scripts/pgpool-failover.sh /usr/local/bin/pgpool-failover.sh
 RUN chmod 600 /etc/pgpool2/pcp.conf \
     && chmod +x /usr/local/bin/wait-for-services.sh \
+    && chmod +x /usr/local/bin/pgpool-failover.sh \
     && mkdir -p /var/run/postgresql /var/log/pgpool \
     && chown -R postgres:postgres /var/run/postgresql /var/log/pgpool /etc/pgpool2
 ENV PATH="/usr/sbin:/usr/bin:/bin:${PATH}"
