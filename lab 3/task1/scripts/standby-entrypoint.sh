@@ -40,4 +40,4 @@ if [ ! -s "$PGDATA/PG_VERSION" ]; then
   chown -R postgres:postgres "$PGDATA"
 fi
 
-exec /usr/local/bin/docker-entrypoint.sh postgres -c "config_file=$PGDATA/postgresql.conf" -c "hba_file=$PGDATA/pg_hba.conf"
+exec /usr/local/bin/postgres-keepalive.sh postgres -c "config_file=$PGDATA/postgresql.conf" -c "hba_file=$PGDATA/pg_hba.conf"
